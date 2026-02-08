@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+   <h1>Pantry Swipe</h1>
+   <style type="text/css">
+      ol, ul { 
+     list-style-type: none;
+      }
+   </style>
+</head>
+<body>
+
+
+<p>Generate recipe ideas from ingreidents you already have.</p>
+
+<main>
+	<h2>How Pantry Swipe works</h2>
+	<ol>
+		<li>Enter the ingredients you have available</li>
+		<li>Review one recipe idea at a time</li>
+		<li>Select "Yes" to save the idea or "No" to skip it</li>
+	</ol>
+	<h2>Enter your ingredients separated by commas</h2>
+	<form>
+		<textarea>Type ingredients</textarea>
+<h2>Dietary restrictions</h2>
+<ul>
+  <li><input type="checkbox" name="restrictions" value="vegan">Vegan</li>
+  <li><input type="checkbox" name="restrictions" value="vegetarian">Vegetarian</li>
+  <li><input type="checkbox" name="restrictions" value="gluten">Gluten-free</li>
+  <li><input type="checkbox" name="restrictions" value="pescatarian">Pescatarian</li>
+  <li><input type="checkbox" name="restrictions" value="paleo">Paleo</li>
+  <li><input type="checkbox" name="restrictions" value="keto">Keto</li>
+  <li><input type="checkbox" name="restrictions" value="other"><textarea>Other</textarea></li>
+</ul>
+<h2>Time</h2>
+<ul>
+<li><input type="checkbox" name="time" value="30">30 Minutes</li>
+  <li><input type="checkbox" name="time" value="vegetarian">60 Minutes</li>
+  <li><input type="checkbox" name="time" value="gluten">90 Minutes</li>
+  <li><input type="checkbox" name="time" value="pescatarian">All the above</li>
+</ul>
+<br>
+<input type="submit" value="Generate Recipe">
+</form>
+</main>
+</body>
+</html>
