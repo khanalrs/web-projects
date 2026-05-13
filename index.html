@@ -1,97 +1,54 @@
-<!doctype html><!-- I originally coded majority of the content and kept asking AI on what elements I'm missing and how I can make the current code I have better. I used a lot of AI to assist me with things like creating buttons, adding drop shadows, bettering specific interactive features that I didn't know how to make interactive before. Figured this was the most beneficial way for me to see how I can pair AI with what I have and what it can do for me -->
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Pantry Swipe — Find recipes based on your ingredients">
-    <meta name="author" content="Riddhi Khanal">
-    <title>Pantry Swipe</title>
-
-   <!-- Bootstrap v5.3.8 -->
-   <!-- LOAD BOOTSTRAP CSS - DO NOT DELETE -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-   <!-- END LOADING BOOTSTRAP CSS -->
-    
-   <!-- Custom styles - add your own CSS to this stylesheet -->
-    <link href="style.css" rel="stylesheet">
-  </head>
-  <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#">PantrySwipe</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-        data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navMenu">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active"
-            href="#swipe">Swipe</a></li>
-            <li class="nav-item"><a class="nav-link" href="#saved">Saved</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <div class="bg-success text-white text-center py-4">
-<h1 class="fw-bold">Find your next meal</h1>
-<p class="mb-0">Add your ingredients, set filters, and swipe on recipes you love.</p>
-</div>
-<div class="container py-4" id="swipe">
-<div class="row g-4">
-  <div class="col-md-4">
-  <div class="card mb-3">
-    <div class="card-body">
-       <h2 class="card-title">Ingredients</h2>
-    <div class="input-group mb-2">
-      <input type="text" id="ingredientinput" class="form-control" placeholder="e.g. chicken, lemon">
-      <button class="btn btn-success" type="button" id="addbtn">add</button></div>
-      <div id="tagarea" class="d-flex flex-wrap gap-1 mb-2"></div>
-    </div>
-  </div>
-<div class="card mb-3">
-  <div class="card-body">
-    <h2 class="card-title">Dietary Filters</h2>
-    <div class="d-flex flex-wrap gap-2" id="filters">
-      <span class="badge bg-secondary filter" data-filter="vegetarian">vegetarian</span>
-       <span class="badge bg-secondary filter" data-filter="vegan">vegan</span>
-       <span class="badge bg-secondary filter" data-filter="gluten-free">gluten free</span>
-       <span class="badge bg-secondary filter" data-filter="dairy-free">dairy free</span>
-<span class="badge bg-secondary filter" data-filter="30min">30 min</span>
-<span class="badge bg-secondary filter" data-filter="60min">60 min</span></div>
-<button class="btn btn-success w-100 mt-3" id="findBtn">Find Recipes</button></div></div>
-<div class="card">
-</div>
-  <div id="cardArea" class="d-flex flex-column align-items-center">
-    <div class="card shadow" id="recipeCard" style="max-width:400px; width:100%;cursor:pointer;">
-      <img id="cardImg"
-      src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&q=80"
-      class="card-img-top" alt="Recipe" style="height:260px; object-fit:cover;">
-      </div>
-      <div class="card-body">
-        <h2 class="card-title" id="cardTitle">Lemon Herb Chicken</h2>
-        <p class="card-text text-muted small" id="cardMeta">35 min &nbsp;|&nbsp;4 servings &nbsp;| 420 kcal</p>
-        <div id="cardBadges" class="mb-2">
-          <span class="badge bg-success">Gluten-Free</span>
-          <span class="badge bg-success"> High Protein</span></div>
-          <label class="form-label small text-muted mb-1">Pantry Match: <span id="matchPct">80%</span></label>
-          <div class="progress mb-2" style="height:8px;">
-<div class="progress-bar bg-success" id="matchBar" role="progressbar" 
-style="width:80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div></div>
-<p class="text-muted small">Click the card to see the full recipe</p></div></div>
-<div class="d-flex gap-4 mt-3">
-  <button class="btn btn-danger btn-lg rounded-circle" id="nopeBtn" title="Skip" style="width:60px;height:60px;">x</button></div>
-  <button class="btn btn-success btn-lg rounded-circle" id="likeBtn" title="Cook it" style="width:60px;height:60px;">♡</button></div>
-  <p class="text-muted small mt-2">Skip &nbsp;|&nbsp; Cook it </p></div>
-<div class="text-center py-5 d-none" id="emptyState">
-  <p class="fs-4">All caught up</p>
-  <button class="btn btn-outline-success" id="resetBtn">shuffle again</button></div></div>
-  <div class="container py-4" id="saved">
-    <h2 class="mb-3">saved recipes</h2>
-    <div class="row g-3" id="savedGrid">
-      <div class="col-12 text-muted text-center py-3" id="noSaved">swipe right on recipe to save them here</div></div></div>
-<!-- LOAD BOOTSTRAP JAVASCRIPT - DO NOT DELETE -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<!-- END LOADING BOOTSTRAP JAVASCRIPT -->
-      
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Pantry Swipe</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="styles.css">
+  <!--I used AI to fix my issues from project 1 and then used it to verify that everything works after hand coding it. Afer running the code, I also asked how I can create check boxes for my filters so the user can click on multiple ingredients-->
+</head>
+<body>
+<header>
+  <h1>Pantry Swipe</h1>
+  <p class="tagline">Generate recipe ideas from ingredients you already have.</p>
+</header>
+<main>
+  <section>
+    <h2>How Pantry Swipe Works</h2>
+    <ol class="steps">
+      <li>Enter the ingredients you have available</li>
+      <li>Review one recipe idea at a time</li>
+      <li>Select "Yes" to save or "No" to skip</li>
+    </ol>
+  </section>
+  <section>
+    <h2>Enter Your Ingredients</h2>
+    <form>
+      <label for="ingredients">Ingredients (separated by commas)</label>
+      <textarea id="ingredients" name="ingredients" placeholder="e.g. chicken, rice, spinach"></textarea>
+      <fieldset>
+        <legend>Dietary Restrictions</legend>
+        <label><input type="checkbox" name="restrictions" value="vegan"> Vegan</label>
+        <label><input type="checkbox" name="restrictions" value="vegetarian"> Vegetarian</label>
+        <label><input type="checkbox" name="restrictions" value="gluten-free"> Gluten-free</label>
+        <label><input type="checkbox" name="restrictions" value="pescatarian"> Pescatarian</label>
+        <label><input type="checkbox" name="restrictions" value="paleo"> Paleo</label>
+        <label><input type="checkbox" name="restrictions" value="keto"> Keto</label>
+        <label>
+          <input type="checkbox" name="restrictions" value="other"> Other:
+          <input type="text" name="other-restriction" placeholder="Specify">
+        </label>
+      </fieldset>
+      <fieldset>
+        <legend>Cooking Time</legend>
+        <label><input type="radio" name="time" value="30"> 30 Minutes</label>
+        <label><input type="radio" name="time" value="60"> 60 Minutes</label>
+        <label><input type="radio" name="time" value="90"> 90 Minutes</label>
+        <label><input type="radio" name="time" value="any"> Any</label>
+      </fieldset>
+      <button type="submit">Generate Recipe</button>
+    </form>
+  </section>
+</main>
+</body>
 </html>
